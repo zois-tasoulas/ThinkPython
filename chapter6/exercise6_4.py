@@ -7,6 +7,6 @@ def is_power(a, b):
 
 
 msg = 'Give numbers a and b, each followed by the enter key\n'
-a = input(msg)
-b = input()
+a = int(input(msg))
+b = int(input())
 print(is_power(a, b))
