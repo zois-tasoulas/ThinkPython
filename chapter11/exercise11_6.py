@@ -36,9 +36,8 @@ def puzzle_solver(d1, d2):
 	lst = []
 	for key in d1:
 		if len(key) == 5:
-			word = list(key)
-			string1 = ''.join(word[1:])
-			string2 = str(word[0]) + ''.join(word[2:])
+			string1 = key[1:]
+			string2 = key[0] + key[2:]
 			if (key in d2) and (string1 in d2) and (string2 in d2):
 				if d2[key] == d2[string1] and d2[key] == d2[string2]:
 					lst.append(key)
