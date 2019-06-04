@@ -1,7 +1,11 @@
 def rotate_word(stn, num):
 	new_str = ""
 	for letter in stn:
-		new_let = chr(ord(letter) + num)
+		if (ord(letter) + num) > ord('z'):
+			let = ord('a') - 1 + (ord(letter) + num - ord('z'))
+		else:
+			let = ord(letter) + num
+		new_let = chr(let)
 		new_str = new_str + new_let
 	return new_str
 
