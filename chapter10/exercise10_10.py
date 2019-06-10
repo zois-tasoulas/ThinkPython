@@ -1,16 +1,26 @@
-def in_bisect(lst, val):
-	leng = len(lst)
-	mid = int(leng / 2)
+def in_bisect(lst, val, minim, maxim):
+	leng = maxim - minim + 1
+	mid = minim + int(leng / 2)
 	if leng == 0:
-		return False
+		return (False, None)
 	elif leng == 1:
-		return (lst[0] == val)
+		if lst[minim] == val:
+			return (True, minim)
+		else:
+			return (False, None)
 	elif leng == 2:
-		return (lst[0] == val) or (lst[1] == val)
+		if lst[minim] == val:
+			return (True, minim)
+		elif lst[maxim] == val:
+			return (True, maxim)
+		else:
+			return (False, None)
 	elif val == lst[mid]:
-		return True
+		return (True, mid)
+	elif val < lst[mid]:
+		return in_bisect(lst, val, minim, mid - 1)
 	else:
-		return in_bisect(lst[0: mid], val) or in_bisect(lst[(mid + 1):], val)
+		return in_bisect(lst, val, mid + 1, maxim)
 
 def build_list1():
 	fin = open('../chapter9/words.txt')
@@ -21,4 +31,6 @@ def build_list1():
 	return t
 
 elem = input('Input a word to search the file:\n')
-print(in_bisect(build_list1(), elem))
+lst = build_list1()
+(logic, val) = in_bisect(lst, elem, 0, len(lst) - 1)
+print(val)
