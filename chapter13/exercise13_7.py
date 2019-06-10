@@ -33,7 +33,7 @@ def read_file(f):
 							count += 1
 	return (t, count)
 
-def bisect(lst, val, minim, maxim):
+def my_bisect(lst, val, minim, maxim):
 	leng = maxim - minim + 1
 	mid = minim + int(leng / 2)
 	if leng < 1:
@@ -48,9 +48,9 @@ def bisect(lst, val, minim, maxim):
 	elif val == lst[mid]:
 		return (True, mid)
 	elif val < lst[mid]:
-		return bisect(lst, val, minim, mid) 
+		return my_bisect(lst, val, minim, mid)
 	else:
-		return bisect(lst, val, mid + 1, maxim)
+		return my_bisect(lst, val, mid + 1, maxim)
 
 def choose_from_hist(dic):
 	lst1 = []
@@ -61,7 +61,7 @@ def choose_from_hist(dic):
 		mysum += dic[key]
 		lst2.append(mysum)
 	x = random.randint(1, mysum)
-	(logic, y) = bisect(lst2, x, 0, len(lst2) - 1)
+	(logic, y) = my_bisect(lst2, x, 0, len(lst2) - 1)
 	if logic == True:
 		return lst1[y]
 	else:
